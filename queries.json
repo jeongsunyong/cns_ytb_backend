@@ -1,0 +1,208 @@
+PUT youtube_config/
+DELETE youtube_config/_doc/config
+GET youtube_config/_search
+{
+  "query":{
+    "match_all":{}
+  }
+}
+
+POST youtube_config/_doc/config
+{
+  "url":"https://www.googleapis.com/youtube/v3",
+  "api_key":"AIzaSyACX40ejL0mq4BfoTmMba56lJ7dXy9w5Qk",
+  "max_video_num":5,
+  "max_comment_num": 1000
+}
+
+
+POST user/_doc
+{
+  "user_id":1,
+  "company":"LG전자",
+  "email":"jeongsunyong@lgcns.com"
+}
+POST products/_doc
+{
+  "product_id":1,
+  "company":"LG전자",
+  "product_name":"LG 스탠바이미 27ART10AKPL",
+  "create_time":"2022-05-31 16:25:00"
+}
+
+GET products/_search
+{
+  "query":{
+    "match_all":{}
+  }
+}
+PUT user/
+{
+  "mappings":{
+    "properties":{
+      "user_id":{
+        "type":"integer"
+      },
+      "company":{
+        "type":"text"
+      },
+      "email":{
+        "type":"text"
+      }
+    }
+  }
+}
+
+PUT products/
+{
+  "mappings":{
+      "properties":{
+      "product_id":{
+        "type":"integer"
+      },
+      "company":{
+        "type":"text"
+      },
+      "product_name":{
+        "type":"keyword"
+      },
+      "createt_time":{
+        "type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss"
+      }
+    }
+  }
+}
+
+DELETE youtube_contents/
+
+PUT youtube_contents/
+{
+  "mappings":{
+    "properties":{
+      "content_id":{
+        "type":"text"
+      },
+      "title":{
+        "type":"keyword"
+      },
+      "img_url":{
+        "type":"text"
+      },
+      "views":{
+        "type":"integer"
+      },
+      "likes":{
+        "type":"integer"
+      },
+      "comments":{
+        "type":"integer"
+      },
+      "date":{
+        "type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss"
+      },
+      "keywords":{
+        "properties":{
+          "rank1":{
+            "properties":{
+              "keyword":{
+                "type":"keyword"
+              },
+              "token":{
+                "type":"keyword"
+              }
+            }
+          },
+          "rank2":{
+            "properties":{
+              "keyword":{
+                "type":"keyword"
+              },
+              "token":{
+                "type":"keyword"
+              }
+            }
+          },
+          "rank3":{
+            "properties":{
+              "keyword":{
+                "type":"keyword"
+              },
+              "token":{
+                "type":"keyword"
+              }
+            }
+          },
+          "rank4":{
+            "properties":{
+              "keyword":{
+                "type":"keyword"
+              },
+              "token":{
+                "type":"keyword"
+              }
+            }
+          },
+          "rank5":{
+            "properties":{
+              "keyword":{
+                "type":"keyword"
+              },
+              "token":{
+                "type":"keyword"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+PUT youtube_comments/
+{
+  "mappings":{
+    "properties":{
+      "content_id":{
+        "type":"integer"
+      },
+      "comments":{
+        "type":"keyword"
+      },
+      "tokens":{
+        "type":"nested",
+        "properties":{
+          "token":{
+            "type":"keyword"
+          }
+        }
+      },
+      "date":{
+        "type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss"
+      },
+      "like":{
+        "type":"integer"
+      }
+    }
+  }
+}
+
+PUT stopwords/
+{
+  "mappings":{
+    "properties":{
+      "stopword":{
+        "type":"keyword"
+      },
+      "date":{
+        "type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss"
+      },
+      "note":{
+        "type":"text"
+      }
+    }
+  }
+}
