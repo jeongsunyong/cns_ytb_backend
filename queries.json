@@ -10,7 +10,7 @@ GET youtube_config/_search
 POST youtube_config/_doc/config
 {
   "url":"https://www.googleapis.com/youtube/v3",
-  "api_key":"AIzaSyACX40ejL0mq4BfoTmMba56lJ7dXy9w5Qk",
+  "api_key":"",
   "max_video_num":5,
   "max_comment_num": 1000
 }
